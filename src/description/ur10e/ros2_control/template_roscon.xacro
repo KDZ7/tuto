@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="template_roscon"
+        params="name type *hardware">
+        <ros2_control name="${name}" type="${type}">
+            <xacro:insert_block name="hardware" />
+            <joint name="shoulder_pan_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <joint name="shoulder_lift_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <joint name="elbow_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <joint name="wrist_1_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <joint name="wrist_2_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <joint name="wrist_3_joint">
+                <state_interface name="position" />
+                <state_interface name="velocity" />
+                <command_interface name="position" />
+            </joint>
+            <sensor name="imu">
+                <state_interface name="orientation" />
+                <state_interface name="angular_velocity" />
+                <state_interface name="linear_acceleration" />
+            </sensor>
+            <gpio name="gpioA">
+                <command_interface name="digital_output" />
+                <state_interface name="digital_input" />
+            </gpio>
+        </ros2_control>
+    </xacro:macro>
+</robot>

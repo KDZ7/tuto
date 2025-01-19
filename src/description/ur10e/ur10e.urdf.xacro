@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="ur10e" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find description)/ur10e/urdf/ur10e.urdf" />
+    <xacro:include filename="$(find description)/ur10e/ros2_control/template_roscon.xacro" />
+    <xacro:template_roscon name="ur10e_mock_generic_system" type="system">
+        <hardware>
+            <plugin>mock_components/GenericSystem</plugin>
+            <param name=" disable_commands">false</param>
+            <param name=" mock_gpio_commands">true</param>
+            <param name=" mock_sensor_commands">true</param>
+            <param name=" position_state_following_offset">0.0</param>
+        </hardware>
+    </xacro:template_roscon>
+</robot>    

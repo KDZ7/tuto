@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(lifecycle_demo)
+project(description)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -10,17 +10,11 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
-find_package(lifecycle_msgs REQUIRED)
-find_package(std_msgs REQUIRED)
 
-add_executable(lifecycle_talker src/lifecycle_talker.cpp)
-add_executable(lifecycle_listener src/lifecycle_listener.cpp)
-add_executable(service_client src/service_client.cpp)
-ament_target_dependencies(lifecycle_talker rclcpp rclcpp_lifecycle lifecycle_msgs std_msgs)
-ament_target_dependencies(lifecycle_listener rclcpp rclcpp_lifecycle lifecycle_msgs std_msgs)
-ament_target_dependencies(service_client rclcpp lifecycle_msgs )
+install(DIRECTORY
+  ur10e
+  DESTINATION share/${PROJECT_NAME}/
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -33,12 +27,5 @@ if(BUILD_TESTING)
   set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
-
-install(TARGETS
-  lifecycle_talker
-  lifecycle_listener
-  service_client
-  DESTINATION lib/${PROJECT_NAME}
-)
 
 ament_package()
